@@ -7,5 +7,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h1>Home</h1>
+  <h1>Mis carreras</h1>
+  <ion-card>
+    <h6>Fecha:</h6>
+    <h5>Distancia</h5>
+    <p>km</p>
+  </ion-card>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="openModal()">+</ion-fab-button>
+  </ion-fab>
 </ion-content>

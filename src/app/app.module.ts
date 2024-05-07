@@ -11,9 +11,10 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RunDetailsComponent } from './run-details/run-details.component';
 import { SummaryComponent } from './summary/summary.component';
+import { AddRunComponent } from './add-run/add-run.component';
 
 @NgModule({
-  declarations: [AppComponent,FavoritesComponent,LoginComponent,ProfileComponent,RunDetailsComponent,SummaryComponent],
+  declarations: [AppComponent,FavoritesComponent,LoginComponent,ProfileComponent,RunDetailsComponent,SummaryComponent, AddRunComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

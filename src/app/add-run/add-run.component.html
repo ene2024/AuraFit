@@ -1,0 +1,70 @@
+<ion-content>
+
+  <ion-toolbar>
+    <ion-title>
+      Agregar Tarea
+    </ion-title>
+  </ion-toolbar>
+
+
+  <form >
+    <ion-card>
+      <ion-row>
+        <p>Fecha</p>
+      </ion-row>
+      <ion-row>
+        <ion-datetime displayFormat="MMM DD, YYYY" max="2030" min="2019">
+          <ion-buttons slot="buttons">
+            <ion-button color="danger" >Reset</ion-button>
+            <ion-button color="primary" >Never mind</ion-button>
+            <ion-button color="primary" >All Set</ion-button>
+          </ion-buttons>
+        </ion-datetime>
+
+        <!--<ion-col>
+          <ion-item>
+            <ion-label>Mes:</ion-label>
+            <ion-select>
+              <ion-select-option value="1">Enero</ion-select-option>
+              <ion-select-option value="2">Febrero</ion-select-option>
+              <ion-select-option value="3">Marzo</ion-select-option>
+              <ion-select-option value="4">Abril</ion-select-option>
+              <ion-select-option value="5">Mayo</ion-select-option>
+              <ion-select-option value="6">Junio</ion-select-option>
+              <ion-select-option value="7">Julio</ion-select-option>
+              <ion-select-option value="8">Agosto</ion-select-option>
+              <ion-select-option value="9">Septiembre</ion-select-option>
+              <ion-select-option value="10">Octubre</ion-select-option>
+              <ion-select-option value="11">Noviembre</ion-select-option>
+              <ion-select-option value="12">Diciembre</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>Año:</ion-label>
+            <ion-select>
+              <ion-select-option value="2024">2024</ion-select-option>
+              <ion-select-option value="2025">2025</ion-select-option>
+              <ion-select-option value="2026">2026</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>-->
+      </ion-row>
+      <ion-row>
+        <p>Distancia recorrida:</p>
+        <ion-input></ion-input>
+      </ion-row>
+      <ion-row>
+        <p>Notas personales:</p>
+        <ion-input></ion-input>
+      </ion-row>
+
+      <ion-row>
+        <ion-button> Agregar </ion-button>
+        
+      </ion-row>
+    </ion-card>
+  </form>
+
+</ion-content>
