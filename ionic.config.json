@@ -1,0 +1,7 @@
+{
+  "name": "AuraFit",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
