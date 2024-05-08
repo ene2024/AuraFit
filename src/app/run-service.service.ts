@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Run } from './run';
+import { Run } from './Interfaces/run';
 
 @Injectable({
   providedIn: 'root'

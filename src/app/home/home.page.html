@@ -8,10 +8,16 @@
 
 <ion-content [fullscreen]="true">
   <h1>Mis carreras</h1>
-  <ion-card>
-    <h6>Fecha:</h6>
-    <h5>Distancia</h5>
-    <p>km</p>
+
+  <ion-card *ngFor="let carrera of carreras; index as i">
+    <ion-grid>
+      <ion-row>
+        <ion-text>Fecha: </ion-text><ion-text>{{formatdate(carrera.date)}}</ion-text>
+      </ion-row>
+      <ion-row>
+        <ion-text>Distancia: </ion-text><ion-text>{{carrera.distance}}</ion-text>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">

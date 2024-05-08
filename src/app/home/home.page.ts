@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AddRunComponent } from '../add-run/add-run.component';
 import { ModalController } from '@ionic/angular';
-import { Run } from '../run';
+import { Run } from '../Interfaces/run';
 import { RunServiceService } from '../run-service.service';
+import { format, parseISO } from 'date-fns';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +15,12 @@ export class HomePage {
   constructor(private modalCtrl: ModalController, private servicio : RunServiceService) {}
 
   carreraNueva: Run ={
-    tiempo: '',
-    distancia: '',
-    ubicacion: '',
-    fecha: '',
-    puntuacion: '',
-    notas: ''
+    time: '',
+    distance: '',
+    location: '',
+    date: '',
+    personalRate: '',
+    description: ''
   }
 
   ngOnInit () {
@@ -38,4 +39,10 @@ export class HomePage {
     });
     return await modal.present();
   }
+
+  formatdate(originalDate: any):any{
+    return format(parseISO(originalDate), 'MMM d, yyyy, HH, mm, bbb');
+  }
 }
+
+
