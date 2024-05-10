@@ -13,7 +13,51 @@
     font-size: xx-large;
 }
 
+.timeseparation h1{
+    position: relative;
+    top:40%;
+    margin:0;
+    font-size: x-large;
+}
+
 ion-picker{
     background-color: transparent;
-    --fade-background-rgb:#0000;
+    //--fade-background-rgb:#0000;
 }
+
+ion-modal {
+    --height: 40%;
+    --border-radius: 16px;
+    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+  
+  ion-modal::part(backdrop) {
+    background: rgba(209, 213, 219);
+    opacity: 1;
+  }
+
+  ion-modal p{
+    color:white;
+  }
+  
+  ion-modal ion-toolbar {
+    --background: rgb(68, 68, 68);
+    --color: white;
+    --height: 5%;
+  }
+
+  ion-button{
+    width: 100%;
+    --background:rgb(95, 95, 95);
+    color:white;
+    --border-radius: 10px;
+  }
+
+  .datetimeDiv{
+    width: auto;
+    height: 100vh;
+  }
+
+  .div1 ion-modal{
+    --height: 100%;
+  }

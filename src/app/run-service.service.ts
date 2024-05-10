@@ -7,6 +7,7 @@ import { Run } from './Interfaces/run';
 export class RunServiceService {
 
   carreras: Run []=[];
+  units: string[]=['Km','Mi']
 
   constructor() { }
 

@@ -12,10 +12,13 @@
   <ion-card *ngFor="let carrera of carreras; index as i">
     <ion-grid>
       <ion-row>
-        <ion-text>Fecha: </ion-text><ion-text>{{formatdate(carrera.date)}}</ion-text>
+        <ion-text>Fecha: </ion-text><ion-text>{{formatDate(carrera.date)}}</ion-text>
       </ion-row>
       <ion-row>
         <ion-text>Distancia: </ion-text><ion-text>{{carrera.distance}}</ion-text>
+      </ion-row>
+      <ion-row>
+        <ion-text>Tiempo: </ion-text><ion-text>{{formatTime(carrera.time)}}</ion-text>
       </ion-row>
     </ion-grid>
   </ion-card>

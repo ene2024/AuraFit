@@ -40,8 +40,12 @@ export class HomePage {
     return await modal.present();
   }
 
-  formatdate(originalDate: any):any{
-    return format(parseISO(originalDate), 'MMM d, yyyy, HH, mm, bbb');
+  formatDate(originalDate: any):any{
+    return format(parseISO(originalDate), 'MMM d, yyyy, HH:mm, bbb');
+  }
+
+  formatTime(originalTime: any):any{
+    return format(parseISO(originalTime), 'HH:mm:ss');
   }
 }
 

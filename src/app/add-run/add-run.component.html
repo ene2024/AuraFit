@@ -7,7 +7,7 @@
           <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <ion-title style="text-align: center; margin-right: 15vw;">Agregar Tarea</ion-title>
+      <ion-title style="text-align: center; margin-right: 15vw;">Agregar Carrera</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -19,7 +19,7 @@
       </ion-row>
       <ion-row>
         <ion-datetime-button datetime="datetime"></ion-datetime-button>
-        <ion-modal [keepContentsMounted]="true">
+        <ion-modal [keepContentsMounted]="true" style="--height: auto;">
           <ng-template>
             <ion-datetime id="datetime" [value]="dateFromIonDatetime" displayFormat="MMM DD, YYYY" max="2030" min="2019"
               [showDefaultButtons]="true" #datetime (ionChange)="datechanged(datetime.value)">
@@ -29,193 +29,319 @@
       </ion-row>
 
       <ion-row>
-        <p>Distancia recorrida:</p>
-        <ion-input id="distance" name="distance" [(ngModel)]="newRun.distance"></ion-input>
+        <ion-col>
+          <p>Distancia recorrida:</p>
+        </ion-col>
+        <ion-col>
+          <ion-button id="open-distance">{{newRun.distance}} {{runService.units[0]}}</ion-button>
+        </ion-col>
       </ion-row>
+      <ion-modal #modal trigger="open-distance" [isOpen]="false">
+        <ng-template>
+          <ion-content>
+            <ion-toolbar>
+              <ion-title>Distancia</ion-title>
+              <ion-buttons slot="start">
+                <ion-button color="light" (click)="cancelModal()"><p>Cancelar</p></ion-button>
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button color="light" (click)="confirmModal()"><p>Confirmar</p></ion-button>
+              </ion-buttons>
+            </ion-toolbar>
 
+            <div class="timepicker">
+              <ion-row style="justify-content: center;">
+                <ion-col size="3">
+                  <ion-picker>
+                    <ion-picker-column [value]="distanceU" (ionChange)="onIonChangeU($event)">
+                      <ion-picker-column-option value="0">0</ion-picker-column-option>
+                      <ion-picker-column-option value="1">1</ion-picker-column-option>
+                      <ion-picker-column-option value="2">2</ion-picker-column-option>
+                      <ion-picker-column-option value="3">3</ion-picker-column-option>
+                      <ion-picker-column-option value="4">4</ion-picker-column-option>
+                      <ion-picker-column-option value="5">5</ion-picker-column-option>
+                      <ion-picker-column-option value="6">6</ion-picker-column-option>
+                      <ion-picker-column-option value="7">7</ion-picker-column-option>
+                      <ion-picker-column-option value="8">8</ion-picker-column-option>
+                      <ion-picker-column-option value="9">9</ion-picker-column-option>
+                      <ion-picker-column-option value="10">10</ion-picker-column-option>
+                      <ion-picker-column-option value="11">11</ion-picker-column-option>
+                      <ion-picker-column-option value="12">12</ion-picker-column-option>
+                      <ion-picker-column-option value="13">13</ion-picker-column-option>
+                      <ion-picker-column-option value="14">14</ion-picker-column-option>
+                      <ion-picker-column-option value="15">15</ion-picker-column-option>
+                      <ion-picker-column-option value="16">16</ion-picker-column-option>
+                      <ion-picker-column-option value="17">17</ion-picker-column-option>
+                      <ion-picker-column-option value="18">18</ion-picker-column-option>
+                      <ion-picker-column-option value="19">19</ion-picker-column-option>
+                      <ion-picker-column-option value="20">20</ion-picker-column-option>
+                      <ion-picker-column-option value="21">21</ion-picker-column-option>
+                      <ion-picker-column-option value="22">22</ion-picker-column-option>
+                      <ion-picker-column-option value="23">23</ion-picker-column-option>
+                      <ion-picker-column-option value="24">24</ion-picker-column-option>
+                      <ion-picker-column-option value="25">25</ion-picker-column-option>
+                      <ion-picker-column-option value="26">26</ion-picker-column-option>
+                      <ion-picker-column-option value="27">27</ion-picker-column-option>
+                      <ion-picker-column-option value="28">28</ion-picker-column-option>
+                      <ion-picker-column-option value="29">29</ion-picker-column-option>
+                      <ion-picker-column-option value="30">30</ion-picker-column-option>
+                      <ion-picker-column-option value="31">31</ion-picker-column-option>
+                      <ion-picker-column-option value="32">32</ion-picker-column-option>
+                      <ion-picker-column-option value="32">33</ion-picker-column-option>
+                      <ion-picker-column-option value="33">33</ion-picker-column-option>
+                      <ion-picker-column-option value="34">34</ion-picker-column-option>
+                      <ion-picker-column-option value="35">35</ion-picker-column-option>
+                      <ion-picker-column-option value="36">36</ion-picker-column-option>
+                      <ion-picker-column-option value="37">37</ion-picker-column-option>
+                      <ion-picker-column-option value="38">38</ion-picker-column-option>
+                      <ion-picker-column-option value="39">39</ion-picker-column-option>
+                      <ion-picker-column-option value="40">40</ion-picker-column-option>
+                      <ion-picker-column-option value="41">41</ion-picker-column-option>
+                      <ion-picker-column-option value="42">42</ion-picker-column-option>
+                      <ion-picker-column-option value="43">43</ion-picker-column-option>
+                      <ion-picker-column-option value="44">44</ion-picker-column-option>
+                      <ion-picker-column-option value="45">45</ion-picker-column-option>
+                      <ion-picker-column-option value="46">46</ion-picker-column-option>
+                      <ion-picker-column-option value="47">47</ion-picker-column-option>
+                      <ion-picker-column-option value="48">48</ion-picker-column-option>
+                      <ion-picker-column-option value="49">49</ion-picker-column-option>
+                      <ion-picker-column-option value="50">50</ion-picker-column-option>
+                    </ion-picker-column>
+                  </ion-picker>
+                </ion-col>
+                <div class="timeseparation">
+                  <p>.</p>
+                </div>
+                <ion-col size="3">
+                  <ion-picker>
+                    <ion-picker-column value="0" [value]="distanceD" (ionChange)="onIonChangeD($event)">
+                      <ion-picker-column-option value="0">0</ion-picker-column-option>
+                      <ion-picker-column-option value="1">1</ion-picker-column-option>
+                      <ion-picker-column-option value="2">2</ion-picker-column-option>
+                      <ion-picker-column-option value="3">3</ion-picker-column-option>
+                      <ion-picker-column-option value="4">4</ion-picker-column-option>
+                      <ion-picker-column-option value="5">5</ion-picker-column-option>
+                      <ion-picker-column-option value="6">6</ion-picker-column-option>
+                      <ion-picker-column-option value="7">7</ion-picker-column-option>
+                      <ion-picker-column-option value="8">8</ion-picker-column-option>
+                      <ion-picker-column-option value="9">9</ion-picker-column-option>
+                    </ion-picker-column>
+                  </ion-picker>
+                </ion-col>
+                <div class="timeseparation">
+                  <h1>{{runService.units[0]}}</h1>
+                </div>
+              </ion-row>
+            </div>
+
+          </ion-content>
+        </ng-template>
+
+      </ion-modal>
       <ion-row>
-        <p>Tiempo:</p>
+        <ion-col>
+          <p>Tiempo:</p>
+        </ion-col>
+        <ion-col>
+          <ion-button id="open-time">{{showTime(newRun.time)}}</ion-button>
+        </ion-col>
       </ion-row>
-      <div class="timepicker">
-        <ion-row style="justify-content: center;">
-          <ion-col size="3">
-            <ion-picker>
-              <ion-picker-column value="0">
-                <ion-picker-column-option value="0">00</ion-picker-column-option>
-                <ion-picker-column-option value="1">01</ion-picker-column-option>
-                <ion-picker-column-option value="2">02</ion-picker-column-option>
-                <ion-picker-column-option value="3">03</ion-picker-column-option>
-                <ion-picker-column-option value="4">04</ion-picker-column-option>
-                <ion-picker-column-option value="5">05</ion-picker-column-option>
-                <ion-picker-column-option value="6">06</ion-picker-column-option>
-                <ion-picker-column-option value="7">07</ion-picker-column-option>
-                <ion-picker-column-option value="8">08</ion-picker-column-option>
-                <ion-picker-column-option value="9">09</ion-picker-column-option>
-                <ion-picker-column-option value="10">10</ion-picker-column-option>
-                <ion-picker-column-option value="11">11</ion-picker-column-option>
-                <ion-picker-column-option value="12">12</ion-picker-column-option>
-                <ion-picker-column-option value="13">13</ion-picker-column-option>
-                <ion-picker-column-option value="14">14</ion-picker-column-option>
-                <ion-picker-column-option value="15">15</ion-picker-column-option>
-                <ion-picker-column-option value="16">16</ion-picker-column-option>
-                <ion-picker-column-option value="17">17</ion-picker-column-option>
-                <ion-picker-column-option value="18">18</ion-picker-column-option>
-                <ion-picker-column-option value="19">19</ion-picker-column-option>
-                <ion-picker-column-option value="20">20</ion-picker-column-option>
-                <ion-picker-column-option value="21">21</ion-picker-column-option>
-                <ion-picker-column-option value="22">22</ion-picker-column-option>
-                <ion-picker-column-option value="23">23</ion-picker-column-option>
-              </ion-picker-column>
-            </ion-picker>
-          </ion-col>
-          
-          <div class="timeseparation">
-            <p>:</p>
-          </div>
+      <ion-modal #modal trigger="open-time" [isOpen]="false">
+        <ng-template>
+          <ion-content>
+            <ion-toolbar>
+              <ion-title>Tiempo</ion-title>
+              <ion-buttons slot="start">
+                <ion-button color="light" (click)="cancelModal()"><p>Cancelar</p></ion-button>
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button color="light" (click)="confirmModal()"><p>Confirmar</p></ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+
+            <div class="timepicker">
+              <ion-row style="justify-content: center;">
+                <ion-col size="3">
+                  <ion-picker>
+                    <ion-picker-column [value]="hours" (ionChange)="onIonChangeH($event)">
+                      <ion-picker-column-option value="0">00</ion-picker-column-option>
+                      <ion-picker-column-option value="1">01</ion-picker-column-option>
+                      <ion-picker-column-option value="2">02</ion-picker-column-option>
+                      <ion-picker-column-option value="3">03</ion-picker-column-option>
+                      <ion-picker-column-option value="4">04</ion-picker-column-option>
+                      <ion-picker-column-option value="5">05</ion-picker-column-option>
+                      <ion-picker-column-option value="6">06</ion-picker-column-option>
+                      <ion-picker-column-option value="7">07</ion-picker-column-option>
+                      <ion-picker-column-option value="8">08</ion-picker-column-option>
+                      <ion-picker-column-option value="9">09</ion-picker-column-option>
+                      <ion-picker-column-option value="10">10</ion-picker-column-option>
+                      <ion-picker-column-option value="11">11</ion-picker-column-option>
+                      <ion-picker-column-option value="12">12</ion-picker-column-option>
+                      <ion-picker-column-option value="13">13</ion-picker-column-option>
+                      <ion-picker-column-option value="14">14</ion-picker-column-option>
+                      <ion-picker-column-option value="15">15</ion-picker-column-option>
+                      <ion-picker-column-option value="16">16</ion-picker-column-option>
+                      <ion-picker-column-option value="17">17</ion-picker-column-option>
+                      <ion-picker-column-option value="18">18</ion-picker-column-option>
+                      <ion-picker-column-option value="19">19</ion-picker-column-option>
+                      <ion-picker-column-option value="20">20</ion-picker-column-option>
+                      <ion-picker-column-option value="21">21</ion-picker-column-option>
+                      <ion-picker-column-option value="22">22</ion-picker-column-option>
+                      <ion-picker-column-option value="23">23</ion-picker-column-option>
+                    </ion-picker-column>
+                  </ion-picker>
+                </ion-col>
+
+                <div class="timeseparation">
+                  <p>:</p>
+                </div>
 
 
-          <ion-col size="3">
-            <ion-picker>
-              <ion-picker-column value="0">
-                <ion-picker-column-option value="0">00</ion-picker-column-option>
-                <ion-picker-column-option value="1">01</ion-picker-column-option>
-                <ion-picker-column-option value="2">02</ion-picker-column-option>
-                <ion-picker-column-option value="3">03</ion-picker-column-option>
-                <ion-picker-column-option value="4">04</ion-picker-column-option>
-                <ion-picker-column-option value="5">05</ion-picker-column-option>
-                <ion-picker-column-option value="6">06</ion-picker-column-option>
-                <ion-picker-column-option value="7">07</ion-picker-column-option>
-                <ion-picker-column-option value="8">08</ion-picker-column-option>
-                <ion-picker-column-option value="9">09</ion-picker-column-option>
-                <ion-picker-column-option value="10">10</ion-picker-column-option>
-                <ion-picker-column-option value="11">11</ion-picker-column-option>
-                <ion-picker-column-option value="12">12</ion-picker-column-option>
-                <ion-picker-column-option value="13">13</ion-picker-column-option>
-                <ion-picker-column-option value="14">14</ion-picker-column-option>
-                <ion-picker-column-option value="15">15</ion-picker-column-option>
-                <ion-picker-column-option value="16">16</ion-picker-column-option>
-                <ion-picker-column-option value="17">17</ion-picker-column-option>
-                <ion-picker-column-option value="18">18</ion-picker-column-option>
-                <ion-picker-column-option value="19">19</ion-picker-column-option>
-                <ion-picker-column-option value="20">20</ion-picker-column-option>
-                <ion-picker-column-option value="21">21</ion-picker-column-option>
-                <ion-picker-column-option value="22">22</ion-picker-column-option>
-                <ion-picker-column-option value="23">23</ion-picker-column-option>
-                <ion-picker-column-option value="24">24</ion-picker-column-option>
-                <ion-picker-column-option value="25">25</ion-picker-column-option>
-                <ion-picker-column-option value="26">26</ion-picker-column-option>
-                <ion-picker-column-option value="27">27</ion-picker-column-option>
-                <ion-picker-column-option value="28">28</ion-picker-column-option>
-                <ion-picker-column-option value="29">29</ion-picker-column-option>
-                <ion-picker-column-option value="30">30</ion-picker-column-option>
-                <ion-picker-column-option value="31">31</ion-picker-column-option>
-                <ion-picker-column-option value="32">32</ion-picker-column-option>
-                <ion-picker-column-option value="33">33</ion-picker-column-option>
-                <ion-picker-column-option value="34">34</ion-picker-column-option>
-                <ion-picker-column-option value="35">35</ion-picker-column-option>
-                <ion-picker-column-option value="36">36</ion-picker-column-option>
-                <ion-picker-column-option value="37">37</ion-picker-column-option>
-                <ion-picker-column-option value="38">38</ion-picker-column-option>
-                <ion-picker-column-option value="39">39</ion-picker-column-option>
-                <ion-picker-column-option value="40">40</ion-picker-column-option>
-                <ion-picker-column-option value="41">41</ion-picker-column-option>
-                <ion-picker-column-option value="42">42</ion-picker-column-option>
-                <ion-picker-column-option value="43">43</ion-picker-column-option>
-                <ion-picker-column-option value="44">44</ion-picker-column-option>
-                <ion-picker-column-option value="45">45</ion-picker-column-option>
-                <ion-picker-column-option value="46">46</ion-picker-column-option>
-                <ion-picker-column-option value="47">47</ion-picker-column-option>
-                <ion-picker-column-option value="48">48</ion-picker-column-option>
-                <ion-picker-column-option value="49">49</ion-picker-column-option>
-                <ion-picker-column-option value="50">50</ion-picker-column-option>
-                <ion-picker-column-option value="51">51</ion-picker-column-option>
-                <ion-picker-column-option value="52">52</ion-picker-column-option>
-                <ion-picker-column-option value="53">53</ion-picker-column-option>
-                <ion-picker-column-option value="54">54</ion-picker-column-option>
-                <ion-picker-column-option value="55">55</ion-picker-column-option>
-                <ion-picker-column-option value="56">56</ion-picker-column-option>
-                <ion-picker-column-option value="57">57</ion-picker-column-option>
-                <ion-picker-column-option value="58">58</ion-picker-column-option>
-                <ion-picker-column-option value="59">59</ion-picker-column-option>
-              </ion-picker-column>
-            </ion-picker>
-          </ion-col>
+                <ion-col size="3">
+                  <ion-picker>
+                    <ion-picker-column value="0" [value]="minutes" (ionChange)="onIonChangeM($event)">
+                      <ion-picker-column-option value="0">00</ion-picker-column-option>
+                      <ion-picker-column-option value="1">01</ion-picker-column-option>
+                      <ion-picker-column-option value="2">02</ion-picker-column-option>
+                      <ion-picker-column-option value="3">03</ion-picker-column-option>
+                      <ion-picker-column-option value="4">04</ion-picker-column-option>
+                      <ion-picker-column-option value="5">05</ion-picker-column-option>
+                      <ion-picker-column-option value="6">06</ion-picker-column-option>
+                      <ion-picker-column-option value="7">07</ion-picker-column-option>
+                      <ion-picker-column-option value="8">08</ion-picker-column-option>
+                      <ion-picker-column-option value="9">09</ion-picker-column-option>
+                      <ion-picker-column-option value="10">10</ion-picker-column-option>
+                      <ion-picker-column-option value="11">11</ion-picker-column-option>
+                      <ion-picker-column-option value="12">12</ion-picker-column-option>
+                      <ion-picker-column-option value="13">13</ion-picker-column-option>
+                      <ion-picker-column-option value="14">14</ion-picker-column-option>
+                      <ion-picker-column-option value="15">15</ion-picker-column-option>
+                      <ion-picker-column-option value="16">16</ion-picker-column-option>
+                      <ion-picker-column-option value="17">17</ion-picker-column-option>
+                      <ion-picker-column-option value="18">18</ion-picker-column-option>
+                      <ion-picker-column-option value="19">19</ion-picker-column-option>
+                      <ion-picker-column-option value="20">20</ion-picker-column-option>
+                      <ion-picker-column-option value="21">21</ion-picker-column-option>
+                      <ion-picker-column-option value="22">22</ion-picker-column-option>
+                      <ion-picker-column-option value="23">23</ion-picker-column-option>
+                      <ion-picker-column-option value="24">24</ion-picker-column-option>
+                      <ion-picker-column-option value="25">25</ion-picker-column-option>
+                      <ion-picker-column-option value="26">26</ion-picker-column-option>
+                      <ion-picker-column-option value="27">27</ion-picker-column-option>
+                      <ion-picker-column-option value="28">28</ion-picker-column-option>
+                      <ion-picker-column-option value="29">29</ion-picker-column-option>
+                      <ion-picker-column-option value="30">30</ion-picker-column-option>
+                      <ion-picker-column-option value="31">31</ion-picker-column-option>
+                      <ion-picker-column-option value="32">32</ion-picker-column-option>
+                      <ion-picker-column-option value="33">33</ion-picker-column-option>
+                      <ion-picker-column-option value="34">34</ion-picker-column-option>
+                      <ion-picker-column-option value="35">35</ion-picker-column-option>
+                      <ion-picker-column-option value="36">36</ion-picker-column-option>
+                      <ion-picker-column-option value="37">37</ion-picker-column-option>
+                      <ion-picker-column-option value="38">38</ion-picker-column-option>
+                      <ion-picker-column-option value="39">39</ion-picker-column-option>
+                      <ion-picker-column-option value="40">40</ion-picker-column-option>
+                      <ion-picker-column-option value="41">41</ion-picker-column-option>
+                      <ion-picker-column-option value="42">42</ion-picker-column-option>
+                      <ion-picker-column-option value="43">43</ion-picker-column-option>
+                      <ion-picker-column-option value="44">44</ion-picker-column-option>
+                      <ion-picker-column-option value="45">45</ion-picker-column-option>
+                      <ion-picker-column-option value="46">46</ion-picker-column-option>
+                      <ion-picker-column-option value="47">47</ion-picker-column-option>
+                      <ion-picker-column-option value="48">48</ion-picker-column-option>
+                      <ion-picker-column-option value="49">49</ion-picker-column-option>
+                      <ion-picker-column-option value="50">50</ion-picker-column-option>
+                      <ion-picker-column-option value="51">51</ion-picker-column-option>
+                      <ion-picker-column-option value="52">52</ion-picker-column-option>
+                      <ion-picker-column-option value="53">53</ion-picker-column-option>
+                      <ion-picker-column-option value="54">54</ion-picker-column-option>
+                      <ion-picker-column-option value="55">55</ion-picker-column-option>
+                      <ion-picker-column-option value="56">56</ion-picker-column-option>
+                      <ion-picker-column-option value="57">57</ion-picker-column-option>
+                      <ion-picker-column-option value="58">58</ion-picker-column-option>
+                      <ion-picker-column-option value="59">59</ion-picker-column-option>
+                    </ion-picker-column>
+                  </ion-picker>
+                </ion-col>
 
-          <div class="timeseparation">
-            <p>:</p>
-          </div>
+                <div class="timeseparation">
+                  <p>:</p>
+                </div>
 
-          <ion-col size="3">
-            <ion-picker>
-              <ion-picker-column value="0">
-                <ion-picker-column-option value="0">00</ion-picker-column-option>
-                <ion-picker-column-option value="1">01</ion-picker-column-option>
-                <ion-picker-column-option value="2">02</ion-picker-column-option>
-                <ion-picker-column-option value="3">03</ion-picker-column-option>
-                <ion-picker-column-option value="4">04</ion-picker-column-option>
-                <ion-picker-column-option value="5">05</ion-picker-column-option>
-                <ion-picker-column-option value="6">06</ion-picker-column-option>
-                <ion-picker-column-option value="7">07</ion-picker-column-option>
-                <ion-picker-column-option value="8">08</ion-picker-column-option>
-                <ion-picker-column-option value="9">09</ion-picker-column-option>
-                <ion-picker-column-option value="10">10</ion-picker-column-option>
-                <ion-picker-column-option value="11">11</ion-picker-column-option>
-                <ion-picker-column-option value="12">12</ion-picker-column-option>
-                <ion-picker-column-option value="13">13</ion-picker-column-option>
-                <ion-picker-column-option value="14">14</ion-picker-column-option>
-                <ion-picker-column-option value="15">15</ion-picker-column-option>
-                <ion-picker-column-option value="16">16</ion-picker-column-option>
-                <ion-picker-column-option value="17">17</ion-picker-column-option>
-                <ion-picker-column-option value="18">18</ion-picker-column-option>
-                <ion-picker-column-option value="19">19</ion-picker-column-option>
-                <ion-picker-column-option value="20">20</ion-picker-column-option>
-                <ion-picker-column-option value="21">21</ion-picker-column-option>
-                <ion-picker-column-option value="22">22</ion-picker-column-option>
-                <ion-picker-column-option value="23">23</ion-picker-column-option>
-                <ion-picker-column-option value="24">24</ion-picker-column-option>
-                <ion-picker-column-option value="25">25</ion-picker-column-option>
-                <ion-picker-column-option value="26">26</ion-picker-column-option>
-                <ion-picker-column-option value="27">27</ion-picker-column-option>
-                <ion-picker-column-option value="28">28</ion-picker-column-option>
-                <ion-picker-column-option value="29">29</ion-picker-column-option>
-                <ion-picker-column-option value="30">30</ion-picker-column-option>
-                <ion-picker-column-option value="31">31</ion-picker-column-option>
-                <ion-picker-column-option value="32">32</ion-picker-column-option>
-                <ion-picker-column-option value="33">33</ion-picker-column-option>
-                <ion-picker-column-option value="34">34</ion-picker-column-option>
-                <ion-picker-column-option value="35">35</ion-picker-column-option>
-                <ion-picker-column-option value="36">36</ion-picker-column-option>
-                <ion-picker-column-option value="37">37</ion-picker-column-option>
-                <ion-picker-column-option value="38">38</ion-picker-column-option>
-                <ion-picker-column-option value="39">39</ion-picker-column-option>
-                <ion-picker-column-option value="40">40</ion-picker-column-option>
-                <ion-picker-column-option value="41">41</ion-picker-column-option>
-                <ion-picker-column-option value="42">42</ion-picker-column-option>
-                <ion-picker-column-option value="43">43</ion-picker-column-option>
-                <ion-picker-column-option value="44">44</ion-picker-column-option>
-                <ion-picker-column-option value="45">45</ion-picker-column-option>
-                <ion-picker-column-option value="46">46</ion-picker-column-option>
-                <ion-picker-column-option value="47">47</ion-picker-column-option>
-                <ion-picker-column-option value="48">48</ion-picker-column-option>
-                <ion-picker-column-option value="49">49</ion-picker-column-option>
-                <ion-picker-column-option value="50">50</ion-picker-column-option>
-                <ion-picker-column-option value="51">51</ion-picker-column-option>
-                <ion-picker-column-option value="52">52</ion-picker-column-option>
-                <ion-picker-column-option value="53">53</ion-picker-column-option>
-                <ion-picker-column-option value="54">54</ion-picker-column-option>
-                <ion-picker-column-option value="55">55</ion-picker-column-option>
-                <ion-picker-column-option value="56">56</ion-picker-column-option>
-                <ion-picker-column-option value="57">57</ion-picker-column-option>
-                <ion-picker-column-option value="58">58</ion-picker-column-option>
-                <ion-picker-column-option value="59">59</ion-picker-column-option>
-              </ion-picker-column>
-            </ion-picker>
+                <ion-col size="3">
+                  <ion-picker>
+                    <ion-picker-column value="0" [value]="seconds" (ionChange)="onIonChangeS($event)">
+                      <ion-picker-column-option value="0">00</ion-picker-column-option>
+                      <ion-picker-column-option value="1">01</ion-picker-column-option>
+                      <ion-picker-column-option value="2">02</ion-picker-column-option>
+                      <ion-picker-column-option value="3">03</ion-picker-column-option>
+                      <ion-picker-column-option value="4">04</ion-picker-column-option>
+                      <ion-picker-column-option value="5">05</ion-picker-column-option>
+                      <ion-picker-column-option value="6">06</ion-picker-column-option>
+                      <ion-picker-column-option value="7">07</ion-picker-column-option>
+                      <ion-picker-column-option value="8">08</ion-picker-column-option>
+                      <ion-picker-column-option value="9">09</ion-picker-column-option>
+                      <ion-picker-column-option value="10">10</ion-picker-column-option>
+                      <ion-picker-column-option value="11">11</ion-picker-column-option>
+                      <ion-picker-column-option value="12">12</ion-picker-column-option>
+                      <ion-picker-column-option value="13">13</ion-picker-column-option>
+                      <ion-picker-column-option value="14">14</ion-picker-column-option>
+                      <ion-picker-column-option value="15">15</ion-picker-column-option>
+                      <ion-picker-column-option value="16">16</ion-picker-column-option>
+                      <ion-picker-column-option value="17">17</ion-picker-column-option>
+                      <ion-picker-column-option value="18">18</ion-picker-column-option>
+                      <ion-picker-column-option value="19">19</ion-picker-column-option>
+                      <ion-picker-column-option value="20">20</ion-picker-column-option>
+                      <ion-picker-column-option value="21">21</ion-picker-column-option>
+                      <ion-picker-column-option value="22">22</ion-picker-column-option>
+                      <ion-picker-column-option value="23">23</ion-picker-column-option>
+                      <ion-picker-column-option value="24">24</ion-picker-column-option>
+                      <ion-picker-column-option value="25">25</ion-picker-column-option>
+                      <ion-picker-column-option value="26">26</ion-picker-column-option>
+                      <ion-picker-column-option value="27">27</ion-picker-column-option>
+                      <ion-picker-column-option value="28">28</ion-picker-column-option>
+                      <ion-picker-column-option value="29">29</ion-picker-column-option>
+                      <ion-picker-column-option value="30">30</ion-picker-column-option>
+                      <ion-picker-column-option value="31">31</ion-picker-column-option>
+                      <ion-picker-column-option value="32">32</ion-picker-column-option>
+                      <ion-picker-column-option value="33">33</ion-picker-column-option>
+                      <ion-picker-column-option value="34">34</ion-picker-column-option>
+                      <ion-picker-column-option value="35">35</ion-picker-column-option>
+                      <ion-picker-column-option value="36">36</ion-picker-column-option>
+                      <ion-picker-column-option value="37">37</ion-picker-column-option>
+                      <ion-picker-column-option value="38">38</ion-picker-column-option>
+                      <ion-picker-column-option value="39">39</ion-picker-column-option>
+                      <ion-picker-column-option value="40">40</ion-picker-column-option>
+                      <ion-picker-column-option value="41">41</ion-picker-column-option>
+                      <ion-picker-column-option value="42">42</ion-picker-column-option>
+                      <ion-picker-column-option value="43">43</ion-picker-column-option>
+                      <ion-picker-column-option value="44">44</ion-picker-column-option>
+                      <ion-picker-column-option value="45">45</ion-picker-column-option>
+                      <ion-picker-column-option value="46">46</ion-picker-column-option>
+                      <ion-picker-column-option value="47">47</ion-picker-column-option>
+                      <ion-picker-column-option value="48">48</ion-picker-column-option>
+                      <ion-picker-column-option value="49">49</ion-picker-column-option>
+                      <ion-picker-column-option value="50">50</ion-picker-column-option>
+                      <ion-picker-column-option value="51">51</ion-picker-column-option>
+                      <ion-picker-column-option value="52">52</ion-picker-column-option>
+                      <ion-picker-column-option value="53">53</ion-picker-column-option>
+                      <ion-picker-column-option value="54">54</ion-picker-column-option>
+                      <ion-picker-column-option value="55">55</ion-picker-column-option>
+                      <ion-picker-column-option value="56">56</ion-picker-column-option>
+                      <ion-picker-column-option value="57">57</ion-picker-column-option>
+                      <ion-picker-column-option value="58">58</ion-picker-column-option>
+                      <ion-picker-column-option value="59">59</ion-picker-column-option>
+                    </ion-picker-column>
+                  </ion-picker>
 
-          </ion-col>
+                </ion-col>
 
-          <!--<ion-input id="time" name="time" [(ngModel)]="newRun.time"></ion-input>-->
-        </ion-row>
-      </div>
+                <!--<ion-input id="time" name="time" [(ngModel)]="newRun.time"></ion-input>-->
+              </ion-row>
+            </div>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
       <ion-row>
         <p>Ubicacion:</p>
         <ion-input id="location" name="location" [(ngModel)]="newRun.location"></ion-input>
