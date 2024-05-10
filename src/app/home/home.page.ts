@@ -16,7 +16,7 @@ export class HomePage {
 
   carreraNueva: Run ={
     time: '',
-    distance: '',
+    distance: 0,
     location: '',
     date: '',
     personalRate: '',

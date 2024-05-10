@@ -21,7 +21,7 @@ export class AddRunComponent  implements OnInit {
   
   newRun:Run={    
     time: '',
-    distance: '',
+    distance: 0,
     location: '',
     date: '',
     personalRate: '',
@@ -34,7 +34,7 @@ export class AddRunComponent  implements OnInit {
     }
 
     emptyfields():boolean{
-      if(this.newRun.time==''||this.newRun.distance==''||this.newRun.location==''||this.newRun.personalRate==''||this.newRun.description==''){
+      if(this.newRun.time==''||this.newRun.distance==0||this.newRun.location==''||this.newRun.personalRate==''||this.newRun.description==''){
         return true;
       }
       else{

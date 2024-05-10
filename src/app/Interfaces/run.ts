@@ -1,6 +1,6 @@
 export interface Run {
     time: string;
-    distance: string;
+    distance: number;
     location: string;
     date: string;
     personalRate: string;
