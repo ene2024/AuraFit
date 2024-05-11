@@ -64,6 +64,7 @@ ion-input{
 .inputValues1{
   background-color: rgb(59, 59, 59);
   border-radius: 10px;
+
 }
 
 .inputValues1 ion-button {
@@ -77,6 +78,16 @@ ion-input{
   font-size: large;
   vertical-align: middle;
 }
+
+.inputValues1 ion-input{
+  --placeholder-color: lightgrey;
+  --placeholder-opacity:1;
+}
+
+.inputValues1 h2 {
+  color:lightgrey;
+}
+
 
 ion-item{
   --background: transparent;

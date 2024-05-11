@@ -16,13 +16,10 @@ import { Router } from '@angular/router';
 })
 export class AddRunComponent implements OnInit {
 
-  constructor(public runService: RunServiceService, private modalController: ModalController,public authServ:AuthenticationService,public routes:Router) {
+  constructor(public runService: RunServiceService, private modalController: ModalController) {
   }
 
   ngOnInit() {
-    if(this.authServ.activeUser==false){
-      this.routes.navigate(['/landing']);
-    }
     
    }
 
