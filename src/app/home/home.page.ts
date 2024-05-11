@@ -19,7 +19,7 @@ export class HomePage {
     distance: 0,
     location: '',
     date: '',
-    personalRate: '',
+    personalRate: 0,
     description: ''
   }
 

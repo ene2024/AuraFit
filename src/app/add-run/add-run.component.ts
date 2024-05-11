@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { format, parseISO } from 'date-fns';
 import { Run } from '../Interfaces/run';
 import { RunServiceService } from '../run-service.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, RangeChangeEventDetail } from '@ionic/angular';
 import { set } from 'date-fns';
-import { formatDate } from '@angular/common';
+import { RangeCustomEvent } from '@ionic/angular';
+//import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-add-run',
@@ -28,7 +29,7 @@ export class AddRunComponent implements OnInit {
     distance: 0,
     location: '',
     date: '',
-    personalRate: '',
+    personalRate: 0,
     description: ''
   };
 
@@ -40,17 +41,30 @@ export class AddRunComponent implements OnInit {
 
   distanceU: number = 0;
   distanceD: number = 0;
+  showDistanceInput:boolean=false;
+  showTimeInput:boolean=false;
+  personalRateChange:boolean=false;
 
 
+  changeDistanceInput(){
+    this.showDistanceInput=!this.showDistanceInput;
+    this.showTimeInput=false;
+  }
+
+  changeTimeInput(){
+    this.showTimeInput=!this.showTimeInput;
+    this.showDistanceInput=false;
+  }
 
   addNewRun() {
     this.newRun.date = this.dateFromIonDatetime;
     this.runService.servaddrun(this.newRun);
     this.modalController.dismiss();
+    console.log(this.newRun);
   }
 
   emptyfields(): boolean {
-    if ((this.hours == 0 && this.minutes == 0 && this.seconds == 0) || (this.newRun.distance == 0 || this.newRun.location == '' || this.newRun.personalRate == '' || this.newRun.description == '')) {
+    if ((this.hours == 0 && this.minutes == 0 && this.seconds == 0) || (this.newRun.distance == 0 || this.newRun.location == '' || !this.personalRateChange|| this.newRun.description == '')) {
       return true;
     }
     else {
@@ -62,41 +76,44 @@ export class AddRunComponent implements OnInit {
     this.modalController.dismiss();
   }
 
-  datechanged(value: any) {
+  ChangeDateInput(value: any) {
     this.dateFromIonDatetime = value;
   }
 
   onIonChangeH(event: CustomEvent) {
     this.hours = event.detail.value;
+    this.formatTime(this.hours,this.minutes,this.seconds);
   }
 
   onIonChangeM(event: CustomEvent) {
     this.minutes = event.detail.value;
+    this.formatTime(this.hours,this.minutes,this.seconds);
 
   }
 
   onIonChangeS(event: CustomEvent) {
     this.seconds = event.detail.value;
+    this.formatTime(this.hours,this.minutes,this.seconds);
   }
 
   onIonChangeU(event: CustomEvent) {
     this.distanceU = event.detail.value;
+    this.formatDistance(this.distanceU,this.distanceD);
   }
 
   onIonChangeD(event: CustomEvent) {
     this.distanceD = event.detail.value;
+    this.formatDistance(this.distanceU,this.distanceD);
   }
 
   formatTime(hours: number, minutes: number, seconds: number) {
     this.time = set(new Date(this.dateFromIonDatetime), { hours: hours, minutes: minutes, seconds: seconds });
     this.newRun.time = this.time.toISOString();
-    console.log(this.time);
   }
 
   formatDistance(units: number, decimals: number) {
     units = units / 1;
     this.newRun.distance = units + decimals / 10;
-    console.log(this.newRun.distance);
   }
 
   confirmModal() {
@@ -112,6 +129,17 @@ export class AddRunComponent implements OnInit {
 
   showTime(originalTime: any): any {
     return format(parseISO(originalTime), 'HH:mm:ss');
+  }
+
+
+  rateChangeInput(event:any) {
+    this.personalRateChange=true;
+    this.newRun.personalRate = event.detail.value;
+  }
+
+  closePickers(){
+    this.showTimeInput=false;
+    this.showDistanceInput=false;
   }
 
 

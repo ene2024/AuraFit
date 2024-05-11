@@ -3,6 +3,6 @@ export interface Run {
     distance: number;
     location: string;
     date: string;
-    personalRate: string;
+    personalRate: number;
     description: string;
 }
