@@ -1,32 +1,36 @@
 <ion-app>
-  <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-title>
-        AuraFit
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div *ngIf="authService.activeUser">
+    <ion-header [translucent]="true">
+      <ion-toolbar>
+        <ion-title>
+          AuraFit
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+  </div>
   <ion-router-outlet></ion-router-outlet>
   <!--<app-favorites></app-favorites>-->
-  <ion-tabs>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="home">
-        <ion-icon name="home"></ion-icon>
-        Inicio
-      </ion-tab-button>
-      <ion-tab-button tab="favorites">
-        <ion-icon name="star"></ion-icon>
-        Favoritos
-      </ion-tab-button>  
-      <ion-tab-button tab="summary">
-        <ion-icon name="list"></ion-icon>
-        Resumen
-      </ion-tab-button>
-      <ion-tab-button tab="profile">
-        <ion-icon name="person"></ion-icon>
-        Perfil
-      </ion-tab-button>
-    
-    </ion-tab-bar>
-  </ion-tabs>
+  <div *ngIf="authService.activeUser">
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="home">
+          <ion-icon name="home"></ion-icon>
+          Inicio
+        </ion-tab-button>
+        <ion-tab-button tab="favorites">
+          <ion-icon name="star"></ion-icon>
+          Favoritos
+        </ion-tab-button>
+        <ion-tab-button tab="summary">
+          <ion-icon name="list"></ion-icon>
+          Resumen
+        </ion-tab-button>
+        <ion-tab-button tab="profile">
+          <ion-icon name="person"></ion-icon>
+          Perfil
+        </ion-tab-button>
+
+      </ion-tab-bar>
+    </ion-tabs>
+  </div>
 </ion-app>

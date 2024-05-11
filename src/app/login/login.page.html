@@ -1,0 +1,58 @@
+
+
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-title>Bienvenido de Vuelta</ion-title>
+  </div>
+  <form [formGroup]="loginForm">
+
+    <div class="inputgroup">
+      <p>Introduce las credenciales:</p>
+      <ion-card class="input">
+        <ion-item>
+          <ion-input formControlName="email" placeholder="Correo"></ion-input>
+          <ion-icon name="mail"></ion-icon>
+        </ion-item>
+        <div
+          *ngIf="this.loginForm.controls?.['email'].touched && this.loginForm.controls?.['email'].invalid || loginAtt">
+          <ion-text *ngIf="errorControl.email.errors?.required">Correo Requerido</ion-text>
+          <ion-text *ngIf="errorControl.email.errors?.pattern">Correo Invalido</ion-text>
+        </div>
+      </ion-card>
+      <ion-card class="input">
+        <ion-item>
+          <ion-input formControlName="password" placeholder="Contraseña"></ion-input>
+          <ion-icon name="lock-closed-outline"></ion-icon>
+        </ion-item>
+        <div
+          *ngIf="this.loginForm.controls?.['password'].touched && this.loginForm.controls?.['password'].invalid || loginAtt">
+          <ion-text *ngIf="errorControl.password.errors?.required==true">Contraseña Requerida</ion-text>
+          <ion-text *ngIf="errorControl.password.errors?.pattern">Contraseña Invalida</ion-text>
+        </div>
+      </ion-card>
+      <ion-card style="--background: transparent; box-shadow: none;">
+        <br>
+        <div>
+          <a [routerLink]="['/resetpasword']">Olvidaste la constraseña?</a>
+        </div>
+        <br>
+        <div>
+          <a [routerLink]="['/signup']">No tienes una cuenta?</a>
+        </div>
+      </ion-card>
+
+
+
+    </div>
+
+  </form>
+
+
+
+  <ion-fab (click)="login()" slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

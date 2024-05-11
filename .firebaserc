@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "aurafit-cv": {
+      "hosting": {
+        "app": [
+          "aurafit-cv"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "aurafit-cv"
+  }
+}

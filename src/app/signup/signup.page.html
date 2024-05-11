@@ -1,0 +1,57 @@
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-title>Bienvenido a AuraFit</ion-title>
+  </div>
+  <form [formGroup]="regForm" novalidate>
+
+    <div class="inputgroup">
+      <p>Complete la informacion:</p>
+      <ion-card class="input">
+        <ion-item>
+          <ion-input formControlName="fullname" placeholder="Nombre"></ion-input>
+          <ion-icon name="person-outline"></ion-icon>
+        </ion-item>
+        <div
+          *ngIf="this.regForm.controls?.['fullname'].touched && this.regForm.controls?.['fullname'].invalid || regAtt">
+          <ion-text *ngIf="errorControl.fullname.errors?.required">Nombre Requerido</ion-text>
+        </div>
+      </ion-card>
+      <ion-card class="input">
+        <ion-item>
+          <ion-input formControlName="email" placeholder="Correo"></ion-input>
+          <ion-icon name="mail"></ion-icon>
+        </ion-item>
+        <div *ngIf="this.regForm.controls?.['email'].touched && this.regForm.controls?.['email'].invalid|| regAtt">
+          <ion-text *ngIf="errorControl.email.errors?.required">Correo Requerido</ion-text>
+          <ion-text *ngIf="errorControl.email.errors?.pattern">Correo Invalido</ion-text>
+        </div>
+      </ion-card>
+      <ion-card class="input">
+        <ion-item>
+          <ion-input formControlName="password" placeholder="Contraseña"></ion-input>
+          <ion-icon name="lock-closed-outline"></ion-icon>
+        </ion-item>
+        <div
+          *ngIf="this.regForm.controls?.['password'].touched && this.regForm.controls?.['password'].invalid|| regAtt">
+          <ion-text *ngIf="errorControl.password.errors?.required">Contraseña Requerida</ion-text>
+          <ion-text *ngIf="errorControl.password.errors?.pattern">Contraseña Invalida</ion-text>
+        </div>
+      </ion-card>
+      <ion-card style="--background: transparent; box-shadow: none;">
+        <br>
+        <div>
+          <a [routerLink]="['/login']">Ya tienes una cuenta?</a>
+        </div>
+      </ion-card>
+    </div>
+  </form>
+
+
+
+  <ion-fab (click)="signUp()" slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

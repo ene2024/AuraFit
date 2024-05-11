@@ -20,3 +20,15 @@ ion-icon{
     width: 50px;
     height: 50px;
 }
+
+.profileOptions{
+    width: 100vw;
+
+}
+
+.profileOptions ion-button{
+    margin-left:5%;
+    width: 90%;
+    --background:rgb(27, 27, 27);
+    color:white;
+}

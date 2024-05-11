@@ -3,6 +3,14 @@
   <h1>Mi perfil</h1>
   <ion-card>
     <ion-icon name="person"></ion-icon>
-    <h5>Nombre</h5>
+    <h5>{{email}}</h5>
   </ion-card>
+  
+  <!--<ion-title>{{user}}</ion-title>-->
+  <div class="profileOptions">
+    <ion-button (click)="logout()">Salir de la cuenta</ion-button>
+  </div>
+        
+
+  
 </ion-content>
