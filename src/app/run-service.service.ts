@@ -26,4 +26,12 @@ export class RunServiceService {
   servedeleterun(id: number){
     this.carreras.splice(id,1);
   }
+
+  servfavrun(id: number){
+    this.carreras[id].favorito = true;
+  }
+
+  servnotfavrun(id: number){
+    this.carreras[id].favorito = false;
+  }
 }

@@ -1,3 +1,49 @@
-<p>
-  run-details works!
-</p>
+<ion-content [fullscreen]="true">
+  <br><br><br>
+  <h1>Detalles del entrenamiento</h1>
+
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <h5>
+          <ion-text>Fecha: </ion-text><ion-text>{{formatDate(carrera.date)}}</ion-text>
+        </h5>
+      </ion-row>
+      <ion-row>
+        <h5>
+          <ion-text>Distancia: </ion-text><ion-text> {{carrera.distance}} km</ion-text>
+        </h5>
+      </ion-row>
+      <ion-row>
+        <h5>
+          <ion-text>Tiempo: </ion-text><ion-text>{{formatTime(carrera.time)}} </ion-text>
+        </h5>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+          <h5><ion-text>Ubicación: </ion-text><ion-text>{{carrera.location}} </ion-text></h5>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <h5>
+          <ion-text>Notas: </ion-text><ion-text>{{carrera.description}} </ion-text>
+        </h5>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <h5>
+          <ion-text>Puntuacion personal: </ion-text><ion-text>{{carrera.personalRate}} </ion-text>
+        </h5>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

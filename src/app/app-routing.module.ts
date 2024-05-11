@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SummaryComponent } from './summary/summary.component';
+import { RunDetailsComponent } from './run-details/run-details.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'summary',
     component: SummaryComponent
+  },
+  {
+    path: 'run/:id',
+    component: RunDetailsComponent
   }
 ];
 

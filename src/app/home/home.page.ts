@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { Run } from '../Interfaces/run';
 import { RunServiceService } from '../run-service.service';
 import { format, parseISO } from 'date-fns';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ export class HomePage {
     location: '',
     date: '',
     personalRate: 0,
-    description: ''
+    description: '',
+    favorito: false
   }
 
   ngOnInit () {
@@ -33,6 +35,10 @@ export class HomePage {
     this.servicio.servedeleterun(id);
   }
 
+  favcarrera(id: number){
+    this.servicio.servfavrun(id);
+  }
+
   async openModal() {
     const modal = await this.modalCtrl.create({
       component: AddRunComponent,
@@ -41,11 +47,33 @@ export class HomePage {
   }
 
   formatDate(originalDate: any):any{
-    return format(parseISO(originalDate), 'MMM d, yyyy, HH:mm, bbb');
+    return format(parseISO(originalDate), 'MMM d, yyyy, HH:mm bbb');
   }
 
   formatTime(originalTime: any):any{
     return format(parseISO(originalTime), 'HH:mm:ss');
+  }
+
+  isActionSheetOpen = false;
+  public actionSheetButtons = [
+    {
+      text: 'Eliminar',
+      role: 'destructive',
+      data: {
+        action: 'delete',
+      },
+    },
+    {
+      text: 'Cancelar',
+      role: 'cancel',
+      data: {
+        action: 'cancel',
+      },
+    },
+  ];
+
+  setOpen(isOpen: boolean) {
+    this.isActionSheetOpen = isOpen;
   }
 }
 

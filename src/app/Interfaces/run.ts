@@ -5,4 +5,5 @@ export interface Run {
     date: string;
     personalRate: number;
     description: string;
+    favorito: boolean;
 }

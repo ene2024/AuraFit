@@ -30,7 +30,8 @@ export class AddRunComponent implements OnInit {
     location: '',
     date: '',
     personalRate: 0,
-    description: ''
+    description: '',
+    favorito: false
   };
 
   hours: number = 0;
