@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-summary',
@@ -7,8 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SummaryComponent  implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthenticationService, public route:Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if(this.authService.activeUser==false){
+      this.route.navigate(['/landing']);
+    }
+  }
 
 }

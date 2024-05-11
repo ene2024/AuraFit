@@ -5,15 +5,24 @@ import { Run } from '../Interfaces/run';
 import { RunServiceService } from '../run-service.service';
 import { format, parseISO } from 'date-fns';
 import { ActionSheetController } from '@ionic/angular';
-
+import { AuthenticationService } from '../authentication.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
 
-  constructor(private modalCtrl: ModalController, private servicio : RunServiceService) {}
+  constructor(private modalCtrl: ModalController, private servicio : RunServiceService, public authService:AuthenticationService,public route:Router) {
+  }
+
+  ngOnInit() {
+    if(this.authService.activeUser==false){
+      this.route.navigate(['/landing']);
+    }
+    this.servicio.servgetruns();
+   }
 
   carreraNueva: Run ={
     time: '',
@@ -23,10 +32,6 @@ export class HomePage {
     personalRate: 0,
     description: '',
     favorito: false
-  }
-
-  ngOnInit () {
-    this.servicio.servgetruns();
   }
 
   carreras : Run[] = this.servicio.carreras;

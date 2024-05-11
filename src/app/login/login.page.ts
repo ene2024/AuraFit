@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
       ]],
       password:['',[
         Validators.required,
-        //Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z])")
+        Validators.pattern("^(?=.*[a-z])(?=.*[A-Z]).{6,}$")
       ]]
     })
   }
@@ -37,6 +37,7 @@ export class LoginPage implements OnInit {
     const loading = await this.loadingCtrl.create();
     await loading.present();
     if (this.loginForm?.valid) {
+      this.succes=true;
       const emailValue = this.loginForm.get('email').value;
       const passwordValue = this.loginForm.get('password').value;
       const user = await this.authService.loginUser(emailValue, passwordValue).then(() => {

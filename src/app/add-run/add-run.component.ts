@@ -5,6 +5,8 @@ import { RunServiceService } from '../run-service.service';
 import { ModalController, RangeChangeEventDetail } from '@ionic/angular';
 import { set } from 'date-fns';
 import { RangeCustomEvent } from '@ionic/angular';
+import { AuthenticationService } from '../authentication.service';
+import { Router } from '@angular/router';
 //import { formatDate } from '@angular/common';
 
 @Component({
@@ -14,10 +16,15 @@ import { RangeCustomEvent } from '@ionic/angular';
 })
 export class AddRunComponent implements OnInit {
 
-  constructor(public runService: RunServiceService, private modalController: ModalController,) {
+  constructor(public runService: RunServiceService, private modalController: ModalController,public authServ:AuthenticationService,public routes:Router) {
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    if(this.authServ.activeUser==false){
+      this.routes.navigate(['/landing']);
+    }
+    
+   }
 
   dateFromIonDatetime = format(new Date(), 'yyyy-MM-dd') + 'T00:00:00-00:00';
   initialtimevalue = set(new Date(this.dateFromIonDatetime), { hours: 0, minutes: 0, seconds: 0 });

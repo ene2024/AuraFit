@@ -15,9 +15,11 @@ import { FormsModule } from '@angular/forms';
 import {AngularFireModule} from '@angular/fire/compat'
 import{AngularFireAuthModule} from '@angular/fire/compat/auth'
 import { environment } from 'src/environments/environment';
+import { HeaderComponent } from './header/header.component';
+import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 
 @NgModule({
-  declarations: [AppComponent,FavoritesComponent,ProfileComponent,RunDetailsComponent,SummaryComponent, AddRunComponent],
+  declarations: [AppComponent,FavoritesComponent,ProfileComponent,RunDetailsComponent,SummaryComponent, AddRunComponent,HeaderComponent,FooterMenuComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule,AngularFireModule,AngularFireAuthModule,AngularFireModule.initializeApp(environment.firebaseConfig)],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

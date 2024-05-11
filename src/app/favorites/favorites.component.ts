@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Run } from '../Interfaces/run';
 import { RunServiceService } from '../run-service.service';
 import { format, parseISO } from 'date-fns';
-
+import { AuthenticationService } from '../authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favorites',
@@ -11,11 +12,15 @@ import { format, parseISO } from 'date-fns';
 })
 export class FavoritesComponent  implements OnInit {  
 
-  constructor(private servicio : RunServiceService) { }
+  constructor(private servicio : RunServiceService,public authService:AuthenticationService,public route:Router) {
+  }
 
   ngOnInit() {
+    if(this.authService.activeUser==false){
+      this.route.navigate(['/landing']);
+    }
     this.servicio.servgetruns();
-  }
+   }
 
   carreras : Run[] = this.servicio.carreras;
 

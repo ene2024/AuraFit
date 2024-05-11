@@ -4,12 +4,9 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SummaryComponent } from './summary/summary.component';
 import { RunDetailsComponent } from './run-details/run-details.component';
+import { LandingPage } from './landing/landing.page';
 
 const routes: Routes = [
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
   {
     path: '',
     redirectTo: 'landing',
@@ -32,6 +29,10 @@ const routes: Routes = [
    component: RunDetailsComponent 
   },
   {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
@@ -46,7 +47,7 @@ const routes: Routes = [
   {
     path: 'landing',
     loadChildren: () => import('./landing/landing.module').then( m => m.LandingPageModule)
-  }
+  },
 
 
 ];

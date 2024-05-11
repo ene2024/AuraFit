@@ -34,7 +34,7 @@
         <div
           *ngIf="this.regForm.controls?.['password'].touched && this.regForm.controls?.['password'].invalid|| regAtt">
           <ion-text *ngIf="errorControl.password.errors?.required">Contraseña Requerida</ion-text>
-          <ion-text *ngIf="errorControl.password.errors?.pattern">Contraseña Invalida</ion-text>
+          <ion-text *ngIf="errorControl.password.errors?.pattern">Contraseña Invalida (+1 Mayuscula, +1 Minuscula, +6 Caracteres)</ion-text>
         </div>
       </ion-card>
       <ion-card style="--background: transparent; box-shadow: none;">
