@@ -18,29 +18,21 @@ export class SummaryComponent  implements OnInit {
       this.route.navigate(['/landing']);
     }
   }
-
   carreras : Run[] = this.servicio.carreras;
-  x: any;
-
-  elegir(i: number): string{
-    console.log(i)
+  
+  runScore(i: number): string{
     if (i<=2){
-      console.log("int1");
       return 'light';
     }
     else if (i>2 && i<=5){
-      console.log("int2");
       return 'warning';
     }
     else if (i>5 && i<=10){
-      console.log("int3");
       return 'tertiary';
     }
     else if (i>10){
-      console.log("int4");
       return 'success';
     }
-    console.log("noentró");
     return 'warning';
   } 
 }
