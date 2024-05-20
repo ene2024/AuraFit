@@ -10,7 +10,7 @@ import { Platform } from '@ionic/angular';
 export class AuthenticationService {
   emailUsuario: string | null = null;
   actualUser:any=null;
-  activeUser:boolean=false;
+  activeUser:boolean=true;
 
   constructor(public ngFireAuth: AngularFireAuth,public route: Router,public platform:Platform) {
    }

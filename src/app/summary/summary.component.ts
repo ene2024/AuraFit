@@ -23,20 +23,20 @@ export class SummaryComponent  implements OnInit {
   x: any;
 
   elegir(i: number): string{
-    this.x = this.carreras[i].distance;
-    if (this.x<=2){
+    console.log(i)
+    if (i<=2){
       console.log("int1");
       return 'light';
     }
-    else if (this.x>2 && this.x<=5){
+    else if (i>2 && i<=5){
       console.log("int2");
       return 'warning';
     }
-    else if (this.x>5 && this.x<=10){
+    else if (i>5 && i<=10){
       console.log("int3");
       return 'tertiary';
     }
-    else if (this.x>10){
+    else if (i>10){
       console.log("int4");
       return 'success';
     }

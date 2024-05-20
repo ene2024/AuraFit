@@ -9,7 +9,7 @@ import { LandingPage } from './landing/landing.page';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'landing',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
