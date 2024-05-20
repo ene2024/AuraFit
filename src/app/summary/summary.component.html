@@ -1,4 +1,11 @@
 <ion-content [fullscreen]="true">
   <br><br><br>
   <h1>Mi resumen</h1>
+  <div class="resumen">
+    <div *ngFor="let carrera of carreras; index as i">
+      <ion-icon name="flash-sharp" [ngStyle]="{color: elegir(i)}">
+    </ion-icon>
+    </div>
+    
+  </div>
 </ion-content>
