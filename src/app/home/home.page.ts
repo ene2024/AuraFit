@@ -52,11 +52,13 @@ export class HomePage implements OnInit{
   }
 
   formatDate(originalDate: any):any{
-    return format(parseISO(originalDate), 'MMM d, yyyy, HH:mm bbb');
+    return format(parseISO(originalDate), 'MMM d, yyyy,hh mm aaa');
   }
 
   formatTime(originalTime: any):any{
+    console.log(originalTime)
     return format(parseISO(originalTime), 'HH:mm:ss');
+    
   }
 
   isActionSheetOpen = false;
