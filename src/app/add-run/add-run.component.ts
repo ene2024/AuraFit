@@ -6,6 +6,8 @@ import { ModalController, ToastController} from '@ionic/angular';
 import { set } from 'date-fns';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { PhotoService } from '../services/photo.service';
+
 //import { formatDate } from '@angular/common';
 
 @Component({
@@ -15,7 +17,7 @@ import { Router } from '@angular/router';
 })
 export class AddRunComponent implements OnInit {
 
-  constructor(public runService: RunServiceService, private modalController: ModalController, private authService:AuthenticationService, private toastCtrl:ToastController,public route:Router) {
+  constructor(public runService: RunServiceService, private modalController: ModalController, private authService:AuthenticationService, private toastCtrl:ToastController,public route:Router,private photoService:PhotoService) {
   }
 
   ngOnInit() {
@@ -24,8 +26,8 @@ export class AddRunComponent implements OnInit {
 
   dateFromIonDatetime = format(new Date(), 'yyyy-MM-dd') + 'T00:00:00-00:00';
   initialtimevalue = set(new Date(this.dateFromIonDatetime), { hours: 0, minutes: 0, seconds: 0 });
-
-  //formattedDate=format(parseISO(this.dateFromIonDatetime), 'MMM d, yyyy, HH, mm, bbb');
+  
+  photoUrl:string | null = null;
 
   newRun: Run = {
     time: this.initialtimevalue.toISOString(),
@@ -35,7 +37,8 @@ export class AddRunComponent implements OnInit {
     personalRate: 0,
     description: '',
     favorito: false,
-    userId:this.authService.userID
+    userId:this.authService.userID,
+    fotoUrl:''
   };
 
   hours: number = 0;
@@ -63,6 +66,7 @@ export class AddRunComponent implements OnInit {
 
   addNewRun() {
     this.newRun.date = this.dateFromIonDatetime;
+    console.log(this.newRun)
     this.runService.servaddrun(this.newRun).then (async()=>{
       this.closemodal();
       const toast = await this.toastCtrl.create({
@@ -155,11 +159,11 @@ export class AddRunComponent implements OnInit {
     this.showDistanceInput = false;
   }
 
-
-
-
-
-
+  async takePhoto() {
+    await this.photoService.addNewToGallery();
+    this.photoUrl = this.photoService.foto?.webViewPath;
+    this.newRun.fotoUrl=this.photoUrl
+  }
 
 
 }

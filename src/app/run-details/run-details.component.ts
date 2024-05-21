@@ -1,8 +1,7 @@
-import { Component, Input, OnInit, input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RunServiceService } from '../services/run-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { format, parseISO } from 'date-fns';
-import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-run-details',
@@ -11,8 +10,7 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class RunDetailsComponent  implements OnInit {
 
-  @Input() id:string
-  constructor(private ruta : ActivatedRoute, private consulta : RunServiceService,private authService:AuthenticationService) { }
+  constructor(private ruta : ActivatedRoute, private consulta : RunServiceService) { }
 
   ngOnInit() {
   }

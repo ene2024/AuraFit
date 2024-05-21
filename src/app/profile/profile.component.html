@@ -1,13 +1,17 @@
 <ion-content [fullscreen]="true">
   <br><br><br>
-  <h1>Mi perfil</h1>
+  <h1>{{authService.userName}}</h1>
+
+  <div class="profileContainer">
+    <div class="fotoContainer">
+      <ion-icon name="person" *ngIf="!photoUrl" (click)="takePhoto()" ></ion-icon>
+      <ion-div class="profileContainer" *ngIf="photoUrl"><img [src]="photoUrl" alt="Captured Photo" class="circular-image"></ion-div>
+    </div>
+  </div>
+    
+    
   <ion-card>
-    <ion-icon name="person"></ion-icon>
-    <h2>{{authService.userName}}</h2>
-    <br>
     <h5>{{authService.userEmail}}</h5>
-    
-    
   </ion-card>
   
   <!--<ion-title>{{user}}</ion-title>-->

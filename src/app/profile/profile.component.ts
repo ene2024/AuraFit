@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
+import { PhotoService } from '../services/photo.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,8 +10,8 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-
-  constructor(public authService: AuthenticationService, public route: Router, public platform: Platform) {
+  photoUrl:string | null = null;
+  constructor(public authService: AuthenticationService, public route: Router, public platform: Platform,public photoService:PhotoService) {
   }
   ngOnInit() {
     this.authService.getUserID();
@@ -33,6 +34,12 @@ export class ProfileComponent implements OnInit {
     })
     this.route.navigate(['/landing']);
 
+  }
+
+  async takePhoto() {
+    await this.photoService.addNewToGallery();
+    this.photoUrl = this.photoService.foto?.webViewPath;
+    console.log(this.photoUrl)
   }
 
 }

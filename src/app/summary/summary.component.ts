@@ -18,7 +18,6 @@ export class SummaryComponent  implements OnInit {
     this.runService.servgetruns();
     this.routeA.params.subscribe(params => {
       this.carreras=this.runService.carreras
-      console.log(this.carreras)
     });
   }
   carreras : Run[] = this.runService.carreras;

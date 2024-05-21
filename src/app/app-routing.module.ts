@@ -4,7 +4,6 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SummaryComponent } from './summary/summary.component';
 import { RunDetailsComponent } from './run-details/run-details.component';
-import { RunServiceService } from './services/run-service.service';
 import { authGuard } from './guards/auth.guard';
 const routes: Routes = [
   {

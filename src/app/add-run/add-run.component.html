@@ -363,13 +363,26 @@
           </ion-col>
         </ion-row>
       </div>
+      <ion-row><br></ion-row>
+
+      <div class="inputValues1">
+        <ion-button *ngIf="!photoUrl" (click)="takePhoto()"><ion-icon name="camera"></ion-icon></ion-button>
+        <ion-card>
+          <div *ngIf="photoUrl">
+            <img [src]="photoUrl" alt="Foto de la Carrera">
+          </div>
+        </ion-card>
+      </div>
+
       <ion-row><br><br></ion-row>
       <ion-row>
         <ion-button [disabled]="emptyfields()" (click)="addNewRun()" class="addButton"> Agregar </ion-button>
       </ion-row>
     </ion-card>
+    
 
-    <!--FALTA LA COSO DE TOMAR FOTO-->
+    
+
   </form>
 
 </ion-content>

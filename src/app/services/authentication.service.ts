@@ -13,7 +13,7 @@ import { Run } from '../Interfaces/run';
 })
 export class AuthenticationService {
   actualUser:any=null;
-  activeUser:boolean=true;
+  activeUser:boolean=false;
   userID: any
   userEmail: any
   userName: any
@@ -62,7 +62,6 @@ export class AuthenticationService {
       this.ngFireAuth.onAuthStateChanged(user=>{
         if(user){
           resolve(user)
-          console.log(user)
         }
         else{
           resolve(null)

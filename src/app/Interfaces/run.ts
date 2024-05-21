@@ -8,4 +8,5 @@ export interface Run {
     favorito: boolean;
     userId:any;
     id?:string;
+    fotoUrl:string;
 }

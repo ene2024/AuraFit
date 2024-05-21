@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Foto } from '../Interfaces/foto';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { RunServiceService } from './run-service.service';
 
 @Injectable({
   providedIn: 'root'
