@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 
@@ -8,37 +8,31 @@ import { Platform } from '@ionic/angular';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent  implements OnInit {
-  user:any;
-  email:any;
-  constructor(public authService:AuthenticationService,public route:Router,public platform:Platform) {
+export class ProfileComponent implements OnInit {
+
+  constructor(public authService: AuthenticationService, public route: Router, public platform: Platform) {
   }
-  
   ngOnInit() {
-    if(this.authService.activeUser==false){
-      this.route.navigate(['/landing']);
-    }
-    this.user=this.authService.getProfile();
-    console.log(this.user)
-    this.authService.getEmail()
-      .then(email => {
-        this.email = email;
-        console.log(this.email);
+    this.authService.getUserID();
+    this.authService.getUserEmail();
+    this.authService.getUserName(this.authService.userID)
+      .then(userName => {
+        this.authService.userName=userName
       })
       .catch(error => {
-        console.error("Error al obtener el email del usuario:", error);
+        console.error('Error getting user name:', error);
       });
   }
 
-  async logout(){
-    this.authService.signOut().then(()=>{
+  async logout() {
+    this.authService.signOut().then(() => {
       this.authService.restartApp();
-      
-    }).catch((error)=>{
+
+    }).catch((error) => {
       console.log(error);
     })
     this.route.navigate(['/landing']);
-    
+
   }
 
 }

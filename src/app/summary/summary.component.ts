@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../authentication.service';
-import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Run } from '../Interfaces/run';
-import { RunServiceService } from '../run-service.service';
+import { RunServiceService } from '../services/run-service.service';
 
 @Component({
   selector: 'app-summary',
@@ -11,14 +11,17 @@ import { RunServiceService } from '../run-service.service';
 })
 export class SummaryComponent  implements OnInit {
 
-  constructor(public authService: AuthenticationService, public route:Router, private servicio: RunServiceService) { }
+  constructor(public authService: AuthenticationService, public route:Router, private runService: RunServiceService, private routeA:ActivatedRoute) { }
 
   ngOnInit() {
-    if(this.authService.activeUser==false){
-      this.route.navigate(['/landing']);
-    }
+    this.authService.goToLanding();
+    this.runService.servgetruns();
+    this.routeA.params.subscribe(params => {
+      this.carreras=this.runService.carreras
+      console.log(this.carreras)
+    });
   }
-  carreras : Run[] = this.servicio.carreras;
+  carreras : Run[] = this.runService.carreras;
   
   runScore(i: number): string{
     if (i<=2){

@@ -17,10 +17,15 @@ import{AngularFireAuthModule} from '@angular/fire/compat/auth'
 import { environment } from 'src/environments/environment';
 import { HeaderComponent } from './header/header.component';
 import { FooterMenuComponent } from './footer-menu/footer-menu.component';
-
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import{getFirestore, provideFirestore} from '@angular/fire/firestore'
 @NgModule({
   declarations: [AppComponent,FavoritesComponent,ProfileComponent,RunDetailsComponent,SummaryComponent, AddRunComponent,HeaderComponent,FooterMenuComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule,AngularFireModule,AngularFireAuthModule,AngularFireModule.initializeApp(environment.firebaseConfig)],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule,
+    AngularFireModule,AngularFireAuthModule,AngularFireModule.initializeApp(environment.firebaseConfig),
+  provideFirebaseApp(()=>initializeApp(environment.firebaseConfig)),
+  provideFirestore(()=>getFirestore())
+],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

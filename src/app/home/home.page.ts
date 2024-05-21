@@ -1,47 +1,40 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component} from '@angular/core';
 import { AddRunComponent } from '../add-run/add-run.component';
 import { ModalController } from '@ionic/angular';
 import { Run } from '../Interfaces/run';
-import { RunServiceService } from '../run-service.service';
+import { RunServiceService } from '../services/run-service.service';
 import { format, parseISO } from 'date-fns';
 import { ActionSheetController } from '@ionic/angular';
-import { AuthenticationService } from '../authentication.service';
-import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
+export class HomePage{
 
-  constructor(private modalCtrl: ModalController, private servicio : RunServiceService, public authService:AuthenticationService,public route:Router) {
+  constructor(private modalCtrl: ModalController, public authService: AuthenticationService, public route: Router,public runService:RunServiceService,private routeA:ActivatedRoute) {
   }
 
   ngOnInit() {
-    if(this.authService.activeUser==false){
-      this.route.navigate(['/landing']);
-    }
-    this.servicio.servgetruns();
-   }
+    this.authService.goToLanding();
+    this.runService.servgetruns();
 
-  carreraNueva: Run ={
-    time: '',
-    distance: 0,
-    location: '',
-    date: '',
-    personalRate: 0,
-    description: '',
-    favorito: false
+    this.routeA.params.subscribe(params => {
+      this.carreras=this.runService.carreras
+    });
+
   }
 
-  carreras : Run[] = this.servicio.carreras;
-
-  eliminarcarrera(id: number){
-    this.servicio.servedeleterun(id);
+  carreras: Run[] = this.runService.carreras;
+  
+  eliminarcarrera(id: number) {
+    this.runService.servedeleterun(id);
   }
 
-  favcarrera(id: number){
-    this.servicio.servfavrun(id);
+  favcarrera(id: number) {
+    this.runService.servfavrun(id);
   }
 
   async openModal() {
@@ -51,14 +44,13 @@ export class HomePage implements OnInit{
     return await modal.present();
   }
 
-  formatDate(originalDate: any):any{
-    return format(parseISO(originalDate), 'MMM d, yyyy,hh mm aaa');
+  formatDate(originalDate: any): any {
+    return format(parseISO(originalDate), 'MMM d, yyyy, hh:mm aaa');
   }
 
-  formatTime(originalTime: any):any{
-    console.log(originalTime)
+  formatTime(originalTime: any): any {
     return format(parseISO(originalTime), 'HH:mm:ss');
-    
+
   }
 
   isActionSheetOpen = false;
@@ -82,6 +74,7 @@ export class HomePage implements OnInit{
   setOpen(isOpen: boolean) {
     this.isActionSheetOpen = isOpen;
   }
+
 }
 
 

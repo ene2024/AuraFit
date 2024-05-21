@@ -6,4 +6,6 @@ export interface Run {
     personalRate: number;
     description: string;
     favorito: boolean;
+    userId:any;
+    id?:string;
 }

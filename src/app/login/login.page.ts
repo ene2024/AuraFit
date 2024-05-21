@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { Route, Router } from '@angular/router';
+import { RunServiceService } from '../services/run-service.service';
+import { getFirestore } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-login',
@@ -13,7 +16,7 @@ export class LoginPage implements OnInit {
   succes: boolean = true;
   loginAtt:boolean=false; 
   loginForm: FormGroup;
-  constructor(public formBuilder: FormBuilder, public loadingCtrl: LoadingController, public authService: AuthenticationService, public router: Router) { }
+  constructor(public formBuilder: FormBuilder, public loadingCtrl: LoadingController, public authService: AuthenticationService, public router: Router,private runService:RunServiceService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -41,21 +44,17 @@ export class LoginPage implements OnInit {
       const emailValue = this.loginForm.get('email').value;
       const passwordValue = this.loginForm.get('password').value;
       const user = await this.authService.loginUser(emailValue, passwordValue).then(() => {
+        this.runService.servgetruns()
+        setTimeout(()=>{
+          loading.dismiss();
+          this.router.navigate(['/home']);
+          this.authService.activeUser=true;
+        },1000);
+        
       }).catch((error) => {
         console.log(error);
-        this.succes = false;
         loading.dismiss();
       })
-
-      if (this.succes) {
-        loading.dismiss();
-        this.router.navigate(['/home']);
-        console.log('Login Correcto');
-        this.authService.activeUser=true;
-      } else {
-        loading.dismiss();
-        console.log('Credenciales Incorrectas');
-      }
     }else{
       this.loginAtt=true;
       loading.dismiss();

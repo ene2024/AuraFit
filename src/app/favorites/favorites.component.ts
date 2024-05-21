@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Run } from '../Interfaces/run';
-import { RunServiceService } from '../run-service.service';
+import { RunServiceService } from '../services/run-service.service';
 import { format, parseISO } from 'date-fns';
-import { AuthenticationService } from '../authentication.service';
-import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-favorites',
@@ -12,20 +12,24 @@ import { Router } from '@angular/router';
 })
 export class FavoritesComponent  implements OnInit {  
 
-  constructor(private servicio : RunServiceService,public authService:AuthenticationService,public route:Router) {
+  constructor(private runService : RunServiceService,public authService:AuthenticationService,public route:Router,private routeA:ActivatedRoute) {
   }
 
   ngOnInit() {
-    if(this.authService.activeUser==false){
-      this.route.navigate(['/landing']);
-    }
-    this.servicio.servgetruns();
+    this.authService.goToLanding();
+    this.runService.servgetruns();
+
+    this.routeA.params.subscribe(params => {
+      this.carreras=this.runService.carreras
+    });
+
    }
 
-  carreras : Run[] = this.servicio.carreras;
+
+  carreras : Run[] = this.runService.carreras;
 
   formatDate(originalDate: any):any{
-    return format(parseISO(originalDate), 'MMM d, yyyy, HH:mm bbb');
+    return format(parseISO(originalDate), 'MMM d, yyyy, HH:mm aaa');
   }
 
   formatTime(originalTime: any):any{
@@ -33,6 +37,6 @@ export class FavoritesComponent  implements OnInit {
   }
 
   notfavcarrera(id: number){
-    this.servicio.servnotfavrun(id);
+    this.runService.servnotfavrun(id);
   }
 }

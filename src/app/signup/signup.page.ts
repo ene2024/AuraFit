@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { Route, Router } from '@angular/router';
 
 @Component({
@@ -41,7 +41,8 @@ export class SignupPage implements OnInit {
       this.succes=true;
       const emailValue = this.regForm.get('email').value;
       const passwordValue = this.regForm.get('password').value;
-      const user = await this.authService.registerUser(emailValue, passwordValue).then(() => {
+      const userValue = this.regForm.get('fullname').value;
+      const user = await this.authService.registerUser(emailValue, passwordValue,userValue).then(() => {
       }).catch((error) => {
         console.log(error);
         this.succes = false;
