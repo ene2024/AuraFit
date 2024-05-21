@@ -13,7 +13,7 @@ import { Run } from '../Interfaces/run';
 })
 export class AuthenticationService {
   actualUser:any=null;
-  activeUser:boolean=false;
+  activeUser:boolean=true;
   userID: any
   userEmail: any
   userName: any
