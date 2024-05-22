@@ -3,7 +3,7 @@
   <h1>Mi resumen</h1>
   <div class="resumen">
     <div *ngFor="let carrera of carreras; index as i" style="display: inline-block;">
-      <ion-icon name="flash-sharp" [color]="runScore(carrera.distance)">
+      <ion-icon name="flash-sharp" [color]="runScore(carrera.distance)" [routerLink]="['/run', i]">
     </ion-icon>
     </div>
     

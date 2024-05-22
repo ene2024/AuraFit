@@ -24,7 +24,7 @@ export class SummaryComponent  implements OnInit {
   
   runScore(i: number): string{
     if (i<=2){
-      return 'light';
+      return 'secondary';
     }
     else if (i>2 && i<=5){
       return 'warning';
